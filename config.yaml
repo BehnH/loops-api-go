@@ -1,4 +1,4 @@
-package: main
+package: loops
 generate:
   client: true
   models: true
