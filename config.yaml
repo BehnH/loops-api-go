@@ -1,5 +1,2 @@
-package: loops
-generate:
-  client: true
-  models: true
-output: loops.gen.go
+packageName: loops
+packageVersion: 1.0.2
