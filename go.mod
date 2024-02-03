@@ -1,10 +1,6 @@
-module github.com/behnh/loops-api-go
+module github.com/GIT_USER_ID/GIT_REPO_ID
 
-go 1.21.5
-
-require github.com/oapi-codegen/runtime v1.1.1
+go 1.18
 
 require (
-	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
-	github.com/google/uuid v1.5.0 // indirect
 )
