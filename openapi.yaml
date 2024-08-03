@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
   title: Loops OpenAPI Spec
-  description: |-
-    This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
-  version: 1.0.1
+  description: This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
+  version: 1.1.0
 servers:
   - url: https://app.loops.so/api/v1
 tags:
@@ -27,33 +26,33 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContactRequest'
+              $ref: "#/components/schemas/ContactRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful create.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactSuccessResponse'
-        '400':
+                $ref: "#/components/schemas/ContactSuccessResponse"
+        "400":
           description: Bad request (e.g. invalid email address).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '405':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "405":
           description: Wrong HTTP request method.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '409':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "409":
           description: Email or `userId` already exists.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
+                $ref: "#/components/schemas/ContactFailureResponse"
       security:
         - apiKey: []
   /contacts/update:
@@ -67,27 +66,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContactRequest'
+              $ref: "#/components/schemas/ContactRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful update
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactSuccessResponse'
-        '400':
+                $ref: "#/components/schemas/ContactSuccessResponse"
+        "400":
           description: Bad request (e.g. `email` or `userId` are missing).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '405':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "405":
           description: Wrong HTTP request method.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
+                $ref: "#/components/schemas/ContactFailureResponse"
       security:
         - apiKey: []
   /contacts/find:
@@ -104,21 +103,21 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of contacts (or an empty array if no contact was found). Contact objects will include any custom properties.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Contact'
-        '400':
+                  $ref: "#/components/schemas/Contact"
+        "400":
           description: Bad request (e.g. invalid email address).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '405':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "405":
           description: Wrong HTTP request method.
       security:
         - apiKey: []
@@ -133,30 +132,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ContactDeleteRequest'
+              $ref: "#/components/schemas/ContactDeleteRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful delete
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactDeleteResponse'
-        '400':
+                $ref: "#/components/schemas/ContactDeleteResponse"
+        "400":
           description: Bad request (e.g. `email` and `userId` are both provided).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '404':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "404":
           description: Contact not found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
-        '405':
+                $ref: "#/components/schemas/ContactFailureResponse"
+        "405":
           description: Wrong HTTP request method.
-        '500':
+        "500":
           description: Internal error.
           content:
             application/json:
@@ -175,26 +174,26 @@ paths:
       summary: Send an event
       description: Send events to trigger emails in Loops.
       requestBody:
-        description: Provide either `email` or `userId` to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).<br>You can add custom contact properties as keys in this request (of type `string`, `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).<br>Make sure to create the properties in Loops before using them in API calls.
+        description: Provide either `email` or `userId` to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).<br>You can add event properties, which will be available in emails sent by this event. Values can be of type string, number, boolean or date ([see allowed date formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).<br>You can add custom contact properties as keys in this request (of type `string`, `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).<br>Make sure to create the properties in Loops before using them in API calls.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful send.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventSuccessResponse'
-        '400':
+                $ref: "#/components/schemas/EventSuccessResponse"
+        "400":
           description: Bad request (e.g. `eventName` is missing).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventFailureResponse'
-        '405':
+                $ref: "#/components/schemas/EventFailureResponse"
+        "405":
           description: Wrong HTTP request method.
       security:
         - apiKey: []
@@ -208,31 +207,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionalRequest'
+              $ref: "#/components/schemas/TransactionalRequest"
         required: true
       responses:
-        '200':
+        "200":
           description: Successful send.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionalSuccessResponse'
-        '400':
+                $ref: "#/components/schemas/TransactionalSuccessResponse"
+        "400":
           description: Bad request (e.g. transactional email is not published).
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/TransactionalFailureResponse'
-                  - $ref: '#/components/schemas/TransactionalFailure2Response'
-                  - $ref: '#/components/schemas/TransactionalFailure3Response'
-        '404':
+                  - $ref: "#/components/schemas/TransactionalFailureResponse"
+                  - $ref: "#/components/schemas/TransactionalFailure2Response"
+                  - $ref: "#/components/schemas/TransactionalFailure3Response"
+        "404":
           description: Transactional email not found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionalFailure2Response'
-        '405':
+                $ref: "#/components/schemas/TransactionalFailure2Response"
+        "405":
           description: Wrong HTTP request method.
       security:
         - apiKey: []
@@ -243,15 +242,15 @@ paths:
       summary: Get a list of custom contact properties
       description: Retrieve a list of your account's custom contact properties.
       responses:
-        '200':
+        "200":
           description: Successful send.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CustomField'
-        '405':
+                  $ref: "#/components/schemas/CustomField"
+        "405":
           description: Wrong HTTP request method.
       security:
         - apiKey: []
@@ -279,7 +278,7 @@ components:
     ContactRequest:
       type: object
       required:
-      - email
+        - email
       properties:
         email:
           type: string
@@ -328,7 +327,7 @@ components:
     EventRequest:
       type: object
       required:
-      - eventName
+        - eventName
       properties:
         email:
           type: string
@@ -336,6 +335,9 @@ components:
           type: string
         eventName:
           type: string
+        eventProperties:
+          type: object
+          description: An object containing event property data for the event, available in emails sent by the event.
     EventSuccessResponse:
       type: object
       properties:
@@ -353,8 +355,8 @@ components:
     TransactionalRequest:
       type: object
       required:
-      - email
-      - transactionalId
+        - email
+        - transactionalId
       properties:
         email:
           type: string
@@ -413,7 +415,7 @@ components:
       example:
         key: favoriteColor
         label: Favorite color
-        type: string
+        type: type
   securitySchemes:
     apiKey:
       type: http
