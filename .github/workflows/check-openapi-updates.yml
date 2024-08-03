@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - check-spec-updates
-    if: ${{ needs.check-spec-updates.outputs.changed == true }}
+    if: ${{ needs.check-spec-updates.outputs.changed == 'true' }}
     steps:
       - uses: actions/checkout@v4
       - run: |
