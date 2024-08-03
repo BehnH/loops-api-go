@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 16 * * *" # every day at 4pm UTC
-  push:
 
 jobs:
   check-spec-updates:
