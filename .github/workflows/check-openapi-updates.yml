@@ -32,9 +32,21 @@ jobs:
     needs:
       - check-spec-updates
     if: ${{ needs.check-spec-updates.outputs.changed == 'true' }}
+    env:
+      GIT_USER_ID: 'behnh'
+      GIT_REPO_ID: 'loops-api-go'
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - run: |
+          curl -s -o openapi.yaml https://app.loops.so/openapi.yaml
           wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.7.0/openapi-generator-cli-7.7.0.jar -O /tmp/openapi-generator-cli.jar
-      - run: |
-          java -jar /tmp/openapi-generator-cli.jar help
+      - run: java -jar /tmp/openapi-generator-cli.jar generate -i openapi.yaml -g go -c config.yaml --git-user-id $GIT_USER_ID --git-repo-id $GIT_REPO_ID
+      - name: Raise PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/generate-client
+          title: '[Automated] OpenAPI Spec Update'
+          reviewers: behnh
