@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** |  | 
 **TransactionalId** | **string** | The ID of the transactional email to send. | 
+**AddToAudience** | Pointer to **bool** | If &#x60;true&#x60;, a contact will be created in your audience using the &#x60;email&#x60; value (if a matching contact doesn&#39;t already exist). | [optional] 
 **DataVariables** | Pointer to **map[string]interface{}** | An object containing contact data as defined by the data variables added to the transactional email template. | [optional] 
 
 ## Methods
@@ -66,6 +67,31 @@ and a boolean to check if the value has been set.
 
 SetTransactionalId sets TransactionalId field to given value.
 
+
+### GetAddToAudience
+
+`func (o *TransactionalRequest) GetAddToAudience() bool`
+
+GetAddToAudience returns the AddToAudience field if non-nil, zero value otherwise.
+
+### GetAddToAudienceOk
+
+`func (o *TransactionalRequest) GetAddToAudienceOk() (*bool, bool)`
+
+GetAddToAudienceOk returns a tuple with the AddToAudience field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddToAudience
+
+`func (o *TransactionalRequest) SetAddToAudience(v bool)`
+
+SetAddToAudience sets AddToAudience field to given value.
+
+### HasAddToAudience
+
+`func (o *TransactionalRequest) HasAddToAudience() bool`
+
+HasAddToAudience returns a boolean if a field has been set.
 
 ### GetDataVariables
 

@@ -2,17 +2,19 @@ openapi: 3.0.3
 info:
   description: "This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api)."
   title: Loops OpenAPI Spec
-  version: 1.0.1
+  version: 1.3.0
 servers:
 - url: https://app.loops.so/api/v1
 tags:
 - description: Manage contacts in your audience
   name: Contacts
+- description: View mailing lists
+  name: Mailing lists
 - description: Trigger email sending with events
   name: Events
 - description: Send transactional emails
   name: Transactional emails
-- description: Custom contact properties
+- description: View custom contact properties
   name: Custom fields
 paths:
   /contacts/create:
@@ -80,7 +82,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContactSuccessResponse'
-          description: Successful update
+          description: Successful update.
         "400":
           content:
             application/json:
@@ -100,13 +102,21 @@ paths:
       - Contacts
   /contacts/find:
     get:
-      description: Search for a contact by `email`.
+      description: Search for a contact by `email` or `userId`. Only one parameter
+        is allowed.
       parameters:
       - description: Email address (URI-encoded)
         explode: true
         in: query
         name: email
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: userId
+        required: false
         schema:
           type: string
         style: form
@@ -149,7 +159,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContactDeleteResponse'
-          description: Successful delete
+          description: Successful delete.
         "400":
           content:
             application/json:
@@ -175,6 +185,25 @@ paths:
       summary: Delete a contact
       tags:
       - Contacts
+  /lists:
+    get:
+      description: Retrieve a list of your account's mailing lists.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/MailingList'
+                type: array
+          description: Successful.
+        "405":
+          description: Wrong HTTP request method.
+      security:
+      - apiKey: []
+      summary: Get a list of mailing lists
+      tags:
+      - Mailing lists
   /events/send:
     post:
       description: Send events to trigger emails in Loops.
@@ -185,9 +214,12 @@ paths:
               $ref: '#/components/schemas/EventRequest'
         description: "Provide either `email` or `userId` to identify the contact ([read\
           \ more](https://loops.so/docs/api-reference/send-event#body)).<br>You can\
-          \ add custom contact properties as keys in this request (of type `string`,\
-          \ `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).<br>Make\
-          \ sure to create the properties in Loops before using them in API calls."
+          \ add event properties, which will be available in emails sent by this event.\
+          \ Values can be of type string, number, boolean or date ([see allowed date\
+          \ formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).<br>Make\
+          \ sure to create the properties in Loops before using them in API calls.<br>You\
+          \ can add contact properties as keys in this request (of type `string`,\
+          \ `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates)))."
         required: true
       responses:
         "200":
@@ -255,7 +287,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/CustomField'
                 type: array
-          description: Successful send.
+          description: Successful.
         "405":
           description: Wrong HTTP request method.
       security:
@@ -301,6 +333,8 @@ components:
         userGroup: userGroup
         userId: userId
         email: email
+        mailingLists:
+          list_123: true
       properties:
         email:
           type: string
@@ -314,6 +348,11 @@ components:
           type: string
         userId:
           type: string
+        mailingLists:
+          description: An object of mailing list IDs and boolean subscription statuses.
+          example:
+            list_123: true
+          type: object
       required:
       - email
       type: object
@@ -329,6 +368,9 @@ components:
           type: string
       type: object
     ContactFailureResponse:
+      example:
+        success: false
+        message: message
       properties:
         success:
           example: false
@@ -363,6 +405,9 @@ components:
         eventName: eventName
         userId: userId
         email: email
+        eventProperties: "{}"
+        mailingLists:
+          list_123: true
       properties:
         email:
           type: string
@@ -370,6 +415,15 @@ components:
           type: string
         eventName:
           type: string
+        eventProperties:
+          description: "An object containing event property data for the event, available\
+            \ in emails sent by the event."
+          type: object
+        mailingLists:
+          description: An object of mailing list IDs and boolean subscription statuses.
+          example:
+            list_123: true
+          type: object
       required:
       - eventName
       type: object
@@ -382,6 +436,9 @@ components:
           type: boolean
       type: object
     EventFailureResponse:
+      example:
+        success: false
+        message: message
       properties:
         success:
           example: false
@@ -391,6 +448,7 @@ components:
       type: object
     TransactionalRequest:
       example:
+        addToAudience: true
         dataVariables: "{}"
         transactionalId: transactionalId
         email: email
@@ -400,6 +458,10 @@ components:
         transactionalId:
           description: The ID of the transactional email to send.
           type: string
+        addToAudience:
+          description: "If `true`, a contact will be created in your audience using\
+            \ the `email` value (if a matching contact doesn't already exist)."
+          type: boolean
         dataVariables:
           description: An object containing contact data as defined by the data variables
             added to the transactional email template.
@@ -417,6 +479,10 @@ components:
           type: boolean
       type: object
     TransactionalFailureResponse:
+      example:
+        path: path
+        success: false
+        message: message
       properties:
         success:
           example: false
@@ -427,6 +493,11 @@ components:
           type: string
       type: object
     TransactionalFailure2Response:
+      example:
+        success: false
+        error:
+          path: path
+          message: message
       properties:
         success:
           example: false
@@ -446,7 +517,7 @@ components:
       example:
         key: favoriteColor
         label: Favorite color
-        type: string
+        type: type
       properties:
         key:
           type: string
@@ -455,7 +526,19 @@ components:
         type:
           type: string
       type: object
+    MailingList:
+      example:
+        id: list_123
+        name: Main mailing list
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      type: object
     _contacts_delete_post_500_response:
+      example:
+        success: false
       properties:
         success:
           example: false
@@ -467,6 +550,9 @@ components:
       - $ref: '#/components/schemas/TransactionalFailure2Response'
       - $ref: '#/components/schemas/TransactionalFailure3Response'
     TransactionalFailure2Response_error:
+      example:
+        path: path
+        message: message
       properties:
         path:
           type: string
