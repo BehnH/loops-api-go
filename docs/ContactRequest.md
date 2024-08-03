@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Subscribed** | Pointer to **bool** |  | [optional] 
 **UserGroup** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
+**MailingLists** | Pointer to **map[string]interface{}** | An object of mailing list IDs and boolean subscription statuses. | [optional] 
 
 ## Methods
 
@@ -174,6 +175,31 @@ SetUserId sets UserId field to given value.
 `func (o *ContactRequest) HasUserId() bool`
 
 HasUserId returns a boolean if a field has been set.
+
+### GetMailingLists
+
+`func (o *ContactRequest) GetMailingLists() map[string]interface{}`
+
+GetMailingLists returns the MailingLists field if non-nil, zero value otherwise.
+
+### GetMailingListsOk
+
+`func (o *ContactRequest) GetMailingListsOk() (*map[string]interface{}, bool)`
+
+GetMailingListsOk returns a tuple with the MailingLists field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMailingLists
+
+`func (o *ContactRequest) SetMailingLists(v map[string]interface{})`
+
+SetMailingLists sets MailingLists field to given value.
+
+### HasMailingLists
+
+`func (o *ContactRequest) HasMailingLists() bool`
+
+HasMailingLists returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

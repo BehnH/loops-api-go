@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Email** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
 **EventName** | **string** |  | 
+**EventProperties** | Pointer to **map[string]interface{}** | An object containing event property data for the event, available in emails sent by the event. | [optional] 
+**MailingLists** | Pointer to **map[string]interface{}** | An object of mailing list IDs and boolean subscription statuses. | [optional] 
 
 ## Methods
 
@@ -96,6 +98,56 @@ and a boolean to check if the value has been set.
 
 SetEventName sets EventName field to given value.
 
+
+### GetEventProperties
+
+`func (o *EventRequest) GetEventProperties() map[string]interface{}`
+
+GetEventProperties returns the EventProperties field if non-nil, zero value otherwise.
+
+### GetEventPropertiesOk
+
+`func (o *EventRequest) GetEventPropertiesOk() (*map[string]interface{}, bool)`
+
+GetEventPropertiesOk returns a tuple with the EventProperties field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventProperties
+
+`func (o *EventRequest) SetEventProperties(v map[string]interface{})`
+
+SetEventProperties sets EventProperties field to given value.
+
+### HasEventProperties
+
+`func (o *EventRequest) HasEventProperties() bool`
+
+HasEventProperties returns a boolean if a field has been set.
+
+### GetMailingLists
+
+`func (o *EventRequest) GetMailingLists() map[string]interface{}`
+
+GetMailingLists returns the MailingLists field if non-nil, zero value otherwise.
+
+### GetMailingListsOk
+
+`func (o *EventRequest) GetMailingListsOk() (*map[string]interface{}, bool)`
+
+GetMailingListsOk returns a tuple with the MailingLists field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMailingLists
+
+`func (o *EventRequest) SetMailingLists(v map[string]interface{})`
+
+SetMailingLists sets MailingLists field to given value.
+
+### HasMailingLists
+
+`func (o *EventRequest) HasMailingLists() bool`
+
+HasMailingLists returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

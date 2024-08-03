@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## ContactsFindGet
 
-> []Contact ContactsFindGet(ctx).Email(email).Execute()
+> []Contact ContactsFindGet(ctx).Email(email).UserId(userId).Execute()
 
 Find a contact
 
@@ -164,11 +164,12 @@ import (
 )
 
 func main() {
-	email := "email_example" // string | Email address (URI-encoded)
+	email := "email_example" // string | Email address (URI-encoded) (optional)
+	userId := "userId_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContactsAPI.ContactsFindGet(context.Background()).Email(email).Execute()
+	resp, r, err := apiClient.ContactsAPI.ContactsFindGet(context.Background()).Email(email).UserId(userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContactsAPI.ContactsFindGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,6 +191,7 @@ Other parameters are passed through a pointer to a apiContactsFindGetRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **string** | Email address (URI-encoded) | 
+ **userId** | **string** |  | 
 
 ### Return type
 
