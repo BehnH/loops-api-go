@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	eventRequest := *openapiclient.NewEventRequest("EventName_example") // EventRequest | Provide either `email` or `userId` to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).<br>You can add custom contact properties as keys in this request (of type `string`, `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).<br>Make sure to create the properties in Loops before using them in API calls.
+	eventRequest := *openapiclient.NewEventRequest("EventName_example") // EventRequest | Provide either `email` or `userId` to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).<br>You can add event properties, which will be available in emails sent by this event. Values can be of type string, number, boolean or date ([see allowed date formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).<br>Make sure to create the properties in Loops before using them in API calls.<br>You can add contact properties as keys in this request (of type `string`, `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -54,7 +54,7 @@ Other parameters are passed through a pointer to a apiEventsSendPostRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventRequest** | [**EventRequest**](EventRequest.md) | Provide either &#x60;email&#x60; or &#x60;userId&#x60; to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).&lt;br&gt;You can add custom contact properties as keys in this request (of type &#x60;string&#x60;, &#x60;number&#x60;, &#x60;boolean&#x60; or &#x60;date&#x60; ([see available date formats](https://loops.so/docs/contacts/properties#dates))).&lt;br&gt;Make sure to create the properties in Loops before using them in API calls. | 
+ **eventRequest** | [**EventRequest**](EventRequest.md) | Provide either &#x60;email&#x60; or &#x60;userId&#x60; to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).&lt;br&gt;You can add event properties, which will be available in emails sent by this event. Values can be of type string, number, boolean or date ([see allowed date formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).&lt;br&gt;Make sure to create the properties in Loops before using them in API calls.&lt;br&gt;You can add contact properties as keys in this request (of type &#x60;string&#x60;, &#x60;number&#x60;, &#x60;boolean&#x60; or &#x60;date&#x60; ([see available date formats](https://loops.so/docs/contacts/properties#dates))). | 
 
 ### Return type
 

@@ -19,49 +19,49 @@ import (
 )
 
 
-// CustomFieldsAPIService CustomFieldsAPI service
-type CustomFieldsAPIService service
+// MailingListsAPIService MailingListsAPI service
+type MailingListsAPIService service
 
-type ApiContactsCustomFieldsGetRequest struct {
+type ApiListsGetRequest struct {
 	ctx context.Context
-	ApiService *CustomFieldsAPIService
+	ApiService *MailingListsAPIService
 }
 
-func (r ApiContactsCustomFieldsGetRequest) Execute() ([]CustomField, *http.Response, error) {
-	return r.ApiService.ContactsCustomFieldsGetExecute(r)
+func (r ApiListsGetRequest) Execute() ([]MailingList, *http.Response, error) {
+	return r.ApiService.ListsGetExecute(r)
 }
 
 /*
-ContactsCustomFieldsGet Get a list of custom contact properties
+ListsGet Get a list of mailing lists
 
-Retrieve a list of your account's custom contact properties.
+Retrieve a list of your account's mailing lists.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiContactsCustomFieldsGetRequest
+ @return ApiListsGetRequest
 */
-func (a *CustomFieldsAPIService) ContactsCustomFieldsGet(ctx context.Context) ApiContactsCustomFieldsGetRequest {
-	return ApiContactsCustomFieldsGetRequest{
+func (a *MailingListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
+	return ApiListsGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []CustomField
-func (a *CustomFieldsAPIService) ContactsCustomFieldsGetExecute(r ApiContactsCustomFieldsGetRequest) ([]CustomField, *http.Response, error) {
+//  @return []MailingList
+func (a *MailingListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]MailingList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []CustomField
+		localVarReturnValue  []MailingList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomFieldsAPIService.ContactsCustomFieldsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MailingListsAPIService.ListsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/contacts/customFields"
+	localVarPath := localBasePath + "/lists"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

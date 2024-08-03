@@ -5,6 +5,7 @@ api/openapi.yaml
 api_contacts.go
 api_custom_fields.go
 api_events.go
+api_mailing_lists.go
 api_transactional_emails.go
 client.go
 configuration.go
@@ -22,6 +23,8 @@ docs/EventFailureResponse.md
 docs/EventRequest.md
 docs/EventSuccessResponse.md
 docs/EventsAPI.md
+docs/MailingList.md
+docs/MailingListsAPI.md
 docs/TransactionalEmailsAPI.md
 docs/TransactionalFailure2Response.md
 docs/TransactionalFailure2ResponseError.md
@@ -45,6 +48,7 @@ model_custom_field.go
 model_event_failure_response.go
 model_event_request.go
 model_event_success_response.go
+model_mailing_list.go
 model_transactional_failure2_response.go
 model_transactional_failure2_response_error.go
 model_transactional_failure3_response.go
@@ -52,4 +56,5 @@ model_transactional_failure_response.go
 model_transactional_request.go
 model_transactional_success_response.go
 response.go
+test/api_mailing_lists_test.go
 utils.go
