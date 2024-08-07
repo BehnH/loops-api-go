@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Path** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Success** | **bool** |  | 
+**Path** | **string** |  | 
+**Message** | **string** |  | 
 
 ## Methods
 
 ### NewTransactionalFailureResponse
 
-`func NewTransactionalFailureResponse() *TransactionalFailureResponse`
+`func NewTransactionalFailureResponse(success bool, path string, message string, ) *TransactionalFailureResponse`
 
 NewTransactionalFailureResponse instantiates a new TransactionalFailureResponse object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *TransactionalFailureResponse) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 ### GetPath
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetPath sets Path field to given value.
 
-### HasPath
-
-`func (o *TransactionalFailureResponse) HasPath() bool`
-
-HasPath returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
-### HasMessage
-
-`func (o *TransactionalFailureResponse) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

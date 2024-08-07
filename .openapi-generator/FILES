@@ -16,7 +16,6 @@ docs/ContactFailureResponse.md
 docs/ContactRequest.md
 docs/ContactSuccessResponse.md
 docs/ContactsAPI.md
-docs/ContactsDeletePost500Response.md
 docs/CustomField.md
 docs/CustomFieldsAPI.md
 docs/EventFailureResponse.md
@@ -32,11 +31,11 @@ docs/TransactionalFailure3Response.md
 docs/TransactionalFailureResponse.md
 docs/TransactionalPost400Response.md
 docs/TransactionalRequest.md
+docs/TransactionalRequestAttachmentsInner.md
 docs/TransactionalSuccessResponse.md
 git_push.sh
 go.mod
 go.sum
-model__contacts_delete_post_500_response.go
 model__transactional_post_400_response.go
 model_contact.go
 model_contact_delete_request.go
@@ -54,7 +53,7 @@ model_transactional_failure2_response_error.go
 model_transactional_failure3_response.go
 model_transactional_failure_response.go
 model_transactional_request.go
+model_transactional_request_attachments_inner.go
 model_transactional_success_response.go
 response.go
-test/api_mailing_lists_test.go
 utils.go

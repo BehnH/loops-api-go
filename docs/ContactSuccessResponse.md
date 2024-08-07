@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Success** | **bool** |  | 
+**Id** | **string** |  | 
 
 ## Methods
 
 ### NewContactSuccessResponse
 
-`func NewContactSuccessResponse() *ContactSuccessResponse`
+`func NewContactSuccessResponse(success bool, id string, ) *ContactSuccessResponse`
 
 NewContactSuccessResponse instantiates a new ContactSuccessResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *ContactSuccessResponse) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 ### GetId
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ContactSuccessResponse) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

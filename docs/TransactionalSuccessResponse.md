@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
+**Success** | **bool** |  | 
 
 ## Methods
 
 ### NewTransactionalSuccessResponse
 
-`func NewTransactionalSuccessResponse() *TransactionalSuccessResponse`
+`func NewTransactionalSuccessResponse(success bool, ) *TransactionalSuccessResponse`
 
 NewTransactionalSuccessResponse instantiates a new TransactionalSuccessResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *TransactionalSuccessResponse) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
