@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
+**Success** | **bool** |  | 
+**Message** | **string** |  | 
 
 ## Methods
 
 ### NewTransactionalFailure3Response
 
-`func NewTransactionalFailure3Response() *TransactionalFailure3Response`
+`func NewTransactionalFailure3Response(success bool, message string, ) *TransactionalFailure3Response`
 
 NewTransactionalFailure3Response instantiates a new TransactionalFailure3Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *TransactionalFailure3Response) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
-### HasMessage
-
-`func (o *TransactionalFailure3Response) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

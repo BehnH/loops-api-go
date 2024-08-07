@@ -98,7 +98,7 @@ import (
 )
 
 func main() {
-	contactDeleteRequest := *openapiclient.NewContactDeleteRequest() // ContactDeleteRequest | Include only one of `email` or `userId`.
+	contactDeleteRequest := *openapiclient.NewContactDeleteRequest("Email_example", "UserId_example") // ContactDeleteRequest | Include only one of `email` or `userId`.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
