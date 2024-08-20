@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | [optional] 
-**UserId** | Pointer to **string** |  | [optional] 
+**Email** | **string** |  | 
+**UserId** | **string** |  | 
 
 ## Methods
 
 ### NewContactDeleteRequest
 
-`func NewContactDeleteRequest() *ContactDeleteRequest`
+`func NewContactDeleteRequest(email string, userId string, ) *ContactDeleteRequest`
 
 NewContactDeleteRequest instantiates a new ContactDeleteRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetEmail sets Email field to given value.
 
-### HasEmail
-
-`func (o *ContactDeleteRequest) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
 
 ### GetUserId
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetUserId sets UserId field to given value.
 
-### HasUserId
-
-`func (o *ContactDeleteRequest) HasUserId() bool`
-
-HasUserId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -16,38 +16,39 @@ import (
 	"fmt"
 )
 
-// checks if the EventFailureResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EventFailureResponse{}
+// checks if the ApiKeyGet200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiKeyGet200Response{}
 
-// EventFailureResponse struct for EventFailureResponse
-type EventFailureResponse struct {
+// ApiKeyGet200Response struct for ApiKeyGet200Response
+type ApiKeyGet200Response struct {
 	Success bool `json:"success"`
-	Message string `json:"message"`
+	// The name of the team the API key belongs to.
+	TeamName string `json:"teamName"`
 }
 
-type _EventFailureResponse EventFailureResponse
+type _ApiKeyGet200Response ApiKeyGet200Response
 
-// NewEventFailureResponse instantiates a new EventFailureResponse object
+// NewApiKeyGet200Response instantiates a new ApiKeyGet200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventFailureResponse(success bool, message string) *EventFailureResponse {
-	this := EventFailureResponse{}
+func NewApiKeyGet200Response(success bool, teamName string) *ApiKeyGet200Response {
+	this := ApiKeyGet200Response{}
 	this.Success = success
-	this.Message = message
+	this.TeamName = teamName
 	return &this
 }
 
-// NewEventFailureResponseWithDefaults instantiates a new EventFailureResponse object
+// NewApiKeyGet200ResponseWithDefaults instantiates a new ApiKeyGet200Response object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEventFailureResponseWithDefaults() *EventFailureResponse {
-	this := EventFailureResponse{}
+func NewApiKeyGet200ResponseWithDefaults() *ApiKeyGet200Response {
+	this := ApiKeyGet200Response{}
 	return &this
 }
 
 // GetSuccess returns the Success field value
-func (o *EventFailureResponse) GetSuccess() bool {
+func (o *ApiKeyGet200Response) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -58,7 +59,7 @@ func (o *EventFailureResponse) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *EventFailureResponse) GetSuccessOk() (*bool, bool) {
+func (o *ApiKeyGet200Response) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,35 +67,35 @@ func (o *EventFailureResponse) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *EventFailureResponse) SetSuccess(v bool) {
+func (o *ApiKeyGet200Response) SetSuccess(v bool) {
 	o.Success = v
 }
 
-// GetMessage returns the Message field value
-func (o *EventFailureResponse) GetMessage() string {
+// GetTeamName returns the TeamName field value
+func (o *ApiKeyGet200Response) GetTeamName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Message
+	return o.TeamName
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetTeamNameOk returns a tuple with the TeamName field value
 // and a boolean to check if the value has been set.
-func (o *EventFailureResponse) GetMessageOk() (*string, bool) {
+func (o *ApiKeyGet200Response) GetTeamNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Message, true
+	return &o.TeamName, true
 }
 
-// SetMessage sets field value
-func (o *EventFailureResponse) SetMessage(v string) {
-	o.Message = v
+// SetTeamName sets field value
+func (o *ApiKeyGet200Response) SetTeamName(v string) {
+	o.TeamName = v
 }
 
-func (o EventFailureResponse) MarshalJSON() ([]byte, error) {
+func (o ApiKeyGet200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -102,20 +103,20 @@ func (o EventFailureResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o EventFailureResponse) ToMap() (map[string]interface{}, error) {
+func (o ApiKeyGet200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
-	toSerialize["message"] = o.Message
+	toSerialize["teamName"] = o.TeamName
 	return toSerialize, nil
 }
 
-func (o *EventFailureResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ApiKeyGet200Response) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"success",
-		"message",
+		"teamName",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -132,53 +133,53 @@ func (o *EventFailureResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varEventFailureResponse := _EventFailureResponse{}
+	varApiKeyGet200Response := _ApiKeyGet200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventFailureResponse)
+	err = decoder.Decode(&varApiKeyGet200Response)
 
 	if err != nil {
 		return err
 	}
 
-	*o = EventFailureResponse(varEventFailureResponse)
+	*o = ApiKeyGet200Response(varApiKeyGet200Response)
 
 	return err
 }
 
-type NullableEventFailureResponse struct {
-	value *EventFailureResponse
+type NullableApiKeyGet200Response struct {
+	value *ApiKeyGet200Response
 	isSet bool
 }
 
-func (v NullableEventFailureResponse) Get() *EventFailureResponse {
+func (v NullableApiKeyGet200Response) Get() *ApiKeyGet200Response {
 	return v.value
 }
 
-func (v *NullableEventFailureResponse) Set(val *EventFailureResponse) {
+func (v *NullableApiKeyGet200Response) Set(val *ApiKeyGet200Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEventFailureResponse) IsSet() bool {
+func (v NullableApiKeyGet200Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEventFailureResponse) Unset() {
+func (v *NullableApiKeyGet200Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEventFailureResponse(val *EventFailureResponse) *NullableEventFailureResponse {
-	return &NullableEventFailureResponse{value: val, isSet: true}
+func NewNullableApiKeyGet200Response(val *ApiKeyGet200Response) *NullableApiKeyGet200Response {
+	return &NullableApiKeyGet200Response{value: val, isSet: true}
 }
 
-func (v NullableEventFailureResponse) MarshalJSON() ([]byte, error) {
+func (v NullableApiKeyGet200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEventFailureResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableApiKeyGet200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

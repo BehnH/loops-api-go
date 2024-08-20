@@ -19,49 +19,47 @@ import (
 )
 
 
-// MailingListsAPIService MailingListsAPI service
-type MailingListsAPIService service
+// APIKeyAPIService APIKeyAPI service
+type APIKeyAPIService service
 
-type ApiListsGetRequest struct {
+type ApiApiKeyGetRequest struct {
 	ctx context.Context
-	ApiService *MailingListsAPIService
+	ApiService *APIKeyAPIService
 }
 
-func (r ApiListsGetRequest) Execute() ([]MailingList, *http.Response, error) {
-	return r.ApiService.ListsGetExecute(r)
+func (r ApiApiKeyGetRequest) Execute() (*ApiKeyGet200Response, *http.Response, error) {
+	return r.ApiService.ApiKeyGetExecute(r)
 }
 
 /*
-ListsGet Get a list of mailing lists
-
-Retrieve a list of your account's mailing lists.
+ApiKeyGet Test your API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListsGetRequest
+ @return ApiApiKeyGetRequest
 */
-func (a *MailingListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
-	return ApiListsGetRequest{
+func (a *APIKeyAPIService) ApiKeyGet(ctx context.Context) ApiApiKeyGetRequest {
+	return ApiApiKeyGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []MailingList
-func (a *MailingListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]MailingList, *http.Response, error) {
+//  @return ApiKeyGet200Response
+func (a *APIKeyAPIService) ApiKeyGetExecute(r ApiApiKeyGetRequest) (*ApiKeyGet200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []MailingList
+		localVarReturnValue  *ApiKeyGet200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MailingListsAPIService.ListsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "APIKeyAPIService.ApiKeyGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/lists"
+	localVarPath := localBasePath + "/api-key"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -105,6 +103,16 @@ func (a *MailingListsAPIService) ListsGetExecute(r ApiListsGetRequest) ([]Mailin
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiKeyGet401Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

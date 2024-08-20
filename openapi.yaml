@@ -1,11 +1,12 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Loops OpenAPI Spec
   description: This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
-  version: 1.3.0
+  version: 1.3.2
 servers:
   - url: https://app.loops.so/api/v1
 tags:
+  - name: API key
   - name: Contacts
     description: Manage contacts in your audience
   - name: Mailing lists
@@ -17,6 +18,42 @@ tags:
   - name: Custom fields
     description: View custom contact properties
 paths:
+  /api-key:
+    get:
+      tags:
+        - API key
+      summary: Test your API key
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    examples:
+                      - true
+                  teamName:
+                    type: string
+                    description: The name of the team the API key belongs to.
+                    examples:
+                      - "Company name"
+                required:
+                  - success
+                  - teamName
+        "401":
+          description: Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    examples:
+                      - Invalid API key
   /contacts/create:
     post:
       tags:
@@ -162,16 +199,6 @@ paths:
                 $ref: "#/components/schemas/ContactFailureResponse"
         "405":
           description: Wrong HTTP request method.
-        "500":
-          description: Internal error.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
       security:
         - apiKey: []
   /lists:
@@ -321,25 +348,32 @@ components:
         mailingLists:
           type: object
           description: An object of mailing list IDs and boolean subscription statuses.
-          example: {
-            "list_123": true
-          }
+          examples:
+            - list_123: true
     ContactSuccessResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: true
+          examples:
+            - true
         id:
           type: string
+      required:
+        - success
+        - id
     ContactFailureResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: false
+          examples:
+            - false
         message:
           type: string
+      required:
+        - success
+        - message
     ContactDeleteRequest:
       type: object
       properties:
@@ -347,15 +381,23 @@ components:
           type: string
         userId:
           type: string
+      required:
+        - email
+        - userId
     ContactDeleteResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: true
+          examples:
+            - true
         message:
           type: string
-          example: Contact deleted.
+          examples:
+            - Contact deleted.
+      required:
+        - success
+        - message
     EventRequest:
       type: object
       required:
@@ -373,23 +415,29 @@ components:
         mailingLists:
           type: object
           description: An object of mailing list IDs and boolean subscription statuses.
-          example: {
-            "list_123": true
-          }
+          examples:
+            - list_123: true
     EventSuccessResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: true
+          examples:
+            - true
+      required:
+        - success
     EventFailureResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: false
+          examples:
+            - false
         message:
           type: string
+      required:
+        - success
+        - message
     TransactionalRequest:
       type: object
       required:
@@ -407,28 +455,56 @@ components:
         dataVariables:
           type: object
           description: An object containing contact data as defined by the data variables added to the transactional email template.
+        attachments:
+          type: array
+          description: A list containing file objects to be sent along with an email message.
+          items:
+            type: object
+            required:
+              - filename
+              - contentType
+              - data
+            properties:
+              filename:
+                type: string
+                description: The name of the file, shown in email clients.
+              contentType:
+                type: string
+                description: The MIME type of the file.
+              data:
+                type: string
+                description: The base64-encoded content of the file.
     TransactionalSuccessResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: true
+          examples:
+            - true
+      required:
+        - success
     TransactionalFailureResponse:
       type: object
       properties:
         success:
           type: boolean
-          example: false
+          examples:
+            - false
         path:
           type: string
         message:
           type: string
+      required:
+        - success
+        - path
+        - message
     TransactionalFailure2Response:
       type: object
       properties:
         success:
           type: boolean
-          example: false
+          examples:
+            - false
         error:
           type: object
           properties:
@@ -436,14 +512,21 @@ components:
               type: string
             message:
               type: string
+      required:
+        - success
+        - error
     TransactionalFailure3Response:
       type: object
       properties:
         success:
           type: boolean
-          example: false
+          examples:
+            - false
         message:
           type: string
+      required:
+        - success
+        - message
     CustomField:
       type: object
       properties:
@@ -453,10 +536,14 @@ components:
           type: string
         type:
           type: string
-      example:
-        key: favoriteColor
-        label: Favorite color
-        type: type
+      examples:
+        - key: favoriteColor
+          label: Favorite color
+          type: string
+      required:
+        - key
+        - label
+        - type
     MailingList:
       type: object
       properties:
@@ -464,9 +551,16 @@ components:
           type: string
         name:
           type: string
-      example:
-        id: list_123
-        name: Main mailing list
+        isPublic:
+          type: boolean
+      examples:
+        - id: list_123
+          name: Main mailing list
+          isPublic: true
+      required:
+        - id
+        - name
+        - isPublic
   securitySchemes:
     apiKey:
       type: http
