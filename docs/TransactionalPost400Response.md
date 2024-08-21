@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Path** | Pointer to **string** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
-**Error** | Pointer to [**TransactionalFailure2ResponseError**](TransactionalFailure2ResponseError.md) |  | [optional] 
+**Success** | **bool** |  | 
+**Path** | **string** |  | 
+**Message** | **string** |  | 
+**Error** | [**TransactionalFailure2ResponseError**](TransactionalFailure2ResponseError.md) |  | 
 
 ## Methods
 
 ### NewTransactionalPost400Response
 
-`func NewTransactionalPost400Response() *TransactionalPost400Response`
+`func NewTransactionalPost400Response(success bool, path string, message string, error_ TransactionalFailure2ResponseError, ) *TransactionalPost400Response`
 
 NewTransactionalPost400Response instantiates a new TransactionalPost400Response object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *TransactionalPost400Response) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 ### GetPath
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetPath sets Path field to given value.
 
-### HasPath
-
-`func (o *TransactionalPost400Response) HasPath() bool`
-
-HasPath returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -97,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
-### HasMessage
-
-`func (o *TransactionalPost400Response) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 ### GetError
 
@@ -122,11 +107,6 @@ and a boolean to check if the value has been set.
 
 SetError sets Error field to given value.
 
-### HasError
-
-`func (o *TransactionalPost400Response) HasError() bool`
-
-HasError returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

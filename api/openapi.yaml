@@ -1,11 +1,12 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   description: "This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api)."
   title: Loops OpenAPI Spec
-  version: 1.3.0
+  version: 1.3.2
 servers:
 - url: https://app.loops.so/api/v1
 tags:
+- name: API key
 - description: Manage contacts in your audience
   name: Contacts
 - description: View mailing lists
@@ -17,6 +18,24 @@ tags:
 - description: View custom contact properties
   name: Custom fields
 paths:
+  /api-key:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_api_key_get_200_response'
+          description: Success
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_api_key_get_401_response'
+          description: Invalid API key
+      summary: Test your API key
+      tags:
+      - API key
   /contacts/create:
     post:
       description: Add a contact to your audience.
@@ -174,12 +193,6 @@ paths:
           description: Contact not found.
         "405":
           description: Wrong HTTP request method.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/_contacts_delete_post_500_response'
-          description: Internal error.
       security:
       - apiKey: []
       summary: Delete a contact
@@ -324,7 +337,6 @@ components:
           type: string
         userId:
           type: string
-      type: object
     ContactRequest:
       example:
         firstName: firstName
@@ -333,8 +345,7 @@ components:
         userGroup: userGroup
         userId: userId
         email: email
-        mailingLists:
-          list_123: true
+        mailingLists: "{}"
       properties:
         email:
           type: string
@@ -350,34 +361,33 @@ components:
           type: string
         mailingLists:
           description: An object of mailing list IDs and boolean subscription statuses.
-          example:
-            list_123: true
           type: object
       required:
       - email
-      type: object
     ContactSuccessResponse:
       example:
         success: true
         id: id
       properties:
         success:
-          example: true
           type: boolean
         id:
           type: string
-      type: object
+      required:
+      - id
+      - success
     ContactFailureResponse:
       example:
-        success: false
+        success: true
         message: message
       properties:
         success:
-          example: false
           type: boolean
         message:
           type: string
-      type: object
+      required:
+      - message
+      - success
     ContactDeleteRequest:
       example:
         userId: userId
@@ -387,27 +397,28 @@ components:
           type: string
         userId:
           type: string
-      type: object
+      required:
+      - email
+      - userId
     ContactDeleteResponse:
       example:
         success: true
-        message: Contact deleted.
+        message: message
       properties:
         success:
-          example: true
           type: boolean
         message:
-          example: Contact deleted.
           type: string
-      type: object
+      required:
+      - message
+      - success
     EventRequest:
       example:
         eventName: eventName
         userId: userId
         email: email
         eventProperties: "{}"
-        mailingLists:
-          list_123: true
+        mailingLists: "{}"
       properties:
         email:
           type: string
@@ -421,33 +432,38 @@ components:
           type: object
         mailingLists:
           description: An object of mailing list IDs and boolean subscription statuses.
-          example:
-            list_123: true
           type: object
       required:
       - eventName
-      type: object
     EventSuccessResponse:
       example:
         success: true
       properties:
         success:
-          example: true
           type: boolean
-      type: object
+      required:
+      - success
     EventFailureResponse:
       example:
-        success: false
+        success: true
         message: message
       properties:
         success:
-          example: false
           type: boolean
         message:
           type: string
-      type: object
+      required:
+      - message
+      - success
     TransactionalRequest:
       example:
+        attachments:
+        - filename: filename
+          data: data
+          contentType: contentType
+        - filename: filename
+          data: data
+          contentType: contentType
         addToAudience: true
         dataVariables: "{}"
         transactionalId: transactionalId
@@ -466,58 +482,70 @@ components:
           description: An object containing contact data as defined by the data variables
             added to the transactional email template.
           type: object
+        attachments:
+          description: A list containing file objects to be sent along with an email
+            message.
+          items:
+            $ref: '#/components/schemas/TransactionalRequest_attachments_inner'
+          type: array
       required:
       - email
       - transactionalId
-      type: object
     TransactionalSuccessResponse:
       example:
         success: true
       properties:
         success:
-          example: true
           type: boolean
-      type: object
+      required:
+      - success
     TransactionalFailureResponse:
       example:
         path: path
-        success: false
+        success: true
         message: message
       properties:
         success:
-          example: false
           type: boolean
         path:
           type: string
         message:
           type: string
-      type: object
+      required:
+      - message
+      - path
+      - success
     TransactionalFailure2Response:
       example:
-        success: false
+        success: true
         error:
           path: path
           message: message
       properties:
         success:
-          example: false
           type: boolean
         error:
           $ref: '#/components/schemas/TransactionalFailure2Response_error'
-      type: object
+      required:
+      - error
+      - success
     TransactionalFailure3Response:
+      example:
+        success: true
+        message: message
       properties:
         success:
-          example: false
           type: boolean
         message:
           type: string
-      type: object
+      required:
+      - message
+      - success
     CustomField:
       example:
-        key: favoriteColor
-        label: Favorite color
+        label: label
         type: type
+        key: key
       properties:
         key:
           type: string
@@ -525,30 +553,69 @@ components:
           type: string
         type:
           type: string
-      type: object
+      required:
+      - key
+      - label
+      - type
     MailingList:
       example:
-        id: list_123
-        name: Main mailing list
+        name: name
+        isPublic: true
+        id: id
       properties:
         id:
           type: string
         name:
           type: string
-      type: object
-    _contacts_delete_post_500_response:
+        isPublic:
+          type: boolean
+      required:
+      - id
+      - isPublic
+      - name
+    _api_key_get_200_response:
       example:
-        success: false
+        teamName: teamName
+        success: true
       properties:
         success:
-          example: false
           type: boolean
-      type: object
+        teamName:
+          description: The name of the team the API key belongs to.
+          type: string
+      required:
+      - success
+      - teamName
+    _api_key_get_401_response:
+      example:
+        error: error
+      properties:
+        error:
+          type: string
     _transactional_post_400_response:
       oneOf:
       - $ref: '#/components/schemas/TransactionalFailureResponse'
       - $ref: '#/components/schemas/TransactionalFailure2Response'
       - $ref: '#/components/schemas/TransactionalFailure3Response'
+    TransactionalRequest_attachments_inner:
+      example:
+        filename: filename
+        data: data
+        contentType: contentType
+      properties:
+        filename:
+          description: "The name of the file, shown in email clients."
+          type: string
+        contentType:
+          description: The MIME type of the file.
+          type: string
+        data:
+          description: The base64-encoded content of the file.
+          type: string
+      required:
+      - contentType
+      - data
+      - filename
     TransactionalFailure2Response_error:
       example:
         path: path
@@ -558,7 +625,6 @@ components:
           type: string
         message:
           type: string
-      type: object
   securitySchemes:
     apiKey:
       scheme: bearer

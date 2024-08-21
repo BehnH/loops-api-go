@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Id** | **string** |  | 
+**Name** | **string** |  | 
+**IsPublic** | **bool** |  | 
 
 ## Methods
 
 ### NewMailingList
 
-`func NewMailingList() *MailingList`
+`func NewMailingList(id string, name string, isPublic bool, ) *MailingList`
 
 NewMailingList instantiates a new MailingList object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *MailingList) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -70,11 +66,26 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
 
-`func (o *MailingList) HasName() bool`
+### GetIsPublic
 
-HasName returns a boolean if a field has been set.
+`func (o *MailingList) GetIsPublic() bool`
+
+GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
+
+### GetIsPublicOk
+
+`func (o *MailingList) GetIsPublicOk() (*bool, bool)`
+
+GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsPublic
+
+`func (o *MailingList) SetIsPublic(v bool)`
+
+SetIsPublic sets IsPublic field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | Pointer to **bool** |  | [optional] 
-**Error** | Pointer to [**TransactionalFailure2ResponseError**](TransactionalFailure2ResponseError.md) |  | [optional] 
+**Success** | **bool** |  | 
+**Error** | [**TransactionalFailure2ResponseError**](TransactionalFailure2ResponseError.md) |  | 
 
 ## Methods
 
 ### NewTransactionalFailure2Response
 
-`func NewTransactionalFailure2Response() *TransactionalFailure2Response`
+`func NewTransactionalFailure2Response(success bool, error_ TransactionalFailure2ResponseError, ) *TransactionalFailure2Response`
 
 NewTransactionalFailure2Response instantiates a new TransactionalFailure2Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetSuccess sets Success field to given value.
 
-### HasSuccess
-
-`func (o *TransactionalFailure2Response) HasSuccess() bool`
-
-HasSuccess returns a boolean if a field has been set.
 
 ### GetError
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetError sets Error field to given value.
 
-### HasError
-
-`func (o *TransactionalFailure2Response) HasError() bool`
-
-HasError returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

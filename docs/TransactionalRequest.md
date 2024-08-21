@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **TransactionalId** | **string** | The ID of the transactional email to send. | 
 **AddToAudience** | Pointer to **bool** | If &#x60;true&#x60;, a contact will be created in your audience using the &#x60;email&#x60; value (if a matching contact doesn&#39;t already exist). | [optional] 
 **DataVariables** | Pointer to **map[string]interface{}** | An object containing contact data as defined by the data variables added to the transactional email template. | [optional] 
+**Attachments** | Pointer to [**[]TransactionalRequestAttachmentsInner**](TransactionalRequestAttachmentsInner.md) | A list containing file objects to be sent along with an email message. | [optional] 
 
 ## Methods
 
@@ -117,6 +118,31 @@ SetDataVariables sets DataVariables field to given value.
 `func (o *TransactionalRequest) HasDataVariables() bool`
 
 HasDataVariables returns a boolean if a field has been set.
+
+### GetAttachments
+
+`func (o *TransactionalRequest) GetAttachments() []TransactionalRequestAttachmentsInner`
+
+GetAttachments returns the Attachments field if non-nil, zero value otherwise.
+
+### GetAttachmentsOk
+
+`func (o *TransactionalRequest) GetAttachmentsOk() (*[]TransactionalRequestAttachmentsInner, bool)`
+
+GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachments
+
+`func (o *TransactionalRequest) SetAttachments(v []TransactionalRequestAttachmentsInner)`
+
+SetAttachments sets Attachments field to given value.
+
+### HasAttachments
+
+`func (o *TransactionalRequest) HasAttachments() bool`
+
+HasAttachments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
