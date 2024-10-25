@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiApiKeyGetRequest struct vi
 
 ### Authorization
 
-No authorization required
+[apiKey](../README.md#apiKey)
 
 ### HTTP request headers
 
