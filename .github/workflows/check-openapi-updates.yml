@@ -44,7 +44,7 @@ jobs:
           wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.7.0/openapi-generator-cli-7.7.0.jar -O /tmp/openapi-generator-cli.jar
       - run: java -jar /tmp/openapi-generator-cli.jar generate -i openapi.yaml -g go -c config.yaml --git-user-id $GIT_USER_ID --git-repo-id $GIT_REPO_ID
       - name: Raise PR
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           branch: bot/generate-client
           title: '[Automated] OpenAPI Spec Update'
