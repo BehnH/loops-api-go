@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Loops OpenAPI Spec
   description: This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
-  version: 1.3.2
+  version: 1.3.3
 servers:
   - url: https://app.loops.so/api/v1
 tags:
@@ -54,6 +54,8 @@ paths:
                     type: string
                     examples:
                       - Invalid API key
+      security:
+        - apiKey: []
   /contacts/create:
     post:
       tags:
@@ -255,7 +257,7 @@ paths:
       tags:
         - Transactional emails
       summary: Send a transactional email
-      description: Send a transactional email to a contact.
+      description: Send a transactional email to a contact.<br>Please [email us](mailto:help@loops.so) to enable attachments on your account before using them with the API.
       requestBody:
         content:
           application/json:
@@ -328,6 +330,11 @@ components:
           type: string
         userId:
           type: string
+        mailingLists:
+          type: object
+          description: An object of mailing list IDs and boolean subscription statuses.
+          examples:
+            - list_123: true
     ContactRequest:
       type: object
       required:
@@ -455,6 +462,9 @@ components:
         dataVariables:
           type: object
           description: An object containing contact data as defined by the data variables added to the transactional email template.
+          examples:
+            - name: Chris
+              passwordResetLink: https://example.com/reset-password
         attachments:
           type: array
           description: A list containing file objects to be sent along with an email message.

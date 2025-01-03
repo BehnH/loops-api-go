@@ -62,5 +62,4 @@ model_transactional_request.go
 model_transactional_request_attachments_inner.go
 model_transactional_success_response.go
 response.go
-test/api_api_key_test.go
 utils.go
