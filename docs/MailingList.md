@@ -6,13 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **Name** | **string** |  | 
+**Description** | **string** |  | 
 **IsPublic** | **bool** |  | 
 
 ## Methods
 
 ### NewMailingList
 
-`func NewMailingList(id string, name string, isPublic bool, ) *MailingList`
+`func NewMailingList(id string, name string, description string, isPublic bool, ) *MailingList`
 
 NewMailingList instantiates a new MailingList object
 This constructor will assign default values to properties that have it defined,
@@ -65,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *MailingList) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetDescription
+
+`func (o *MailingList) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *MailingList) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *MailingList) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 
 ### GetIsPublic
