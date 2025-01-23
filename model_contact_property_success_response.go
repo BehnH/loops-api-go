@@ -16,36 +16,36 @@ import (
 	"fmt"
 )
 
-// checks if the TransactionalSuccessResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &TransactionalSuccessResponse{}
+// checks if the ContactPropertySuccessResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactPropertySuccessResponse{}
 
-// TransactionalSuccessResponse struct for TransactionalSuccessResponse
-type TransactionalSuccessResponse struct {
+// ContactPropertySuccessResponse struct for ContactPropertySuccessResponse
+type ContactPropertySuccessResponse struct {
 	Success bool `json:"success"`
 }
 
-type _TransactionalSuccessResponse TransactionalSuccessResponse
+type _ContactPropertySuccessResponse ContactPropertySuccessResponse
 
-// NewTransactionalSuccessResponse instantiates a new TransactionalSuccessResponse object
+// NewContactPropertySuccessResponse instantiates a new ContactPropertySuccessResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionalSuccessResponse(success bool) *TransactionalSuccessResponse {
-	this := TransactionalSuccessResponse{}
+func NewContactPropertySuccessResponse(success bool) *ContactPropertySuccessResponse {
+	this := ContactPropertySuccessResponse{}
 	this.Success = success
 	return &this
 }
 
-// NewTransactionalSuccessResponseWithDefaults instantiates a new TransactionalSuccessResponse object
+// NewContactPropertySuccessResponseWithDefaults instantiates a new ContactPropertySuccessResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTransactionalSuccessResponseWithDefaults() *TransactionalSuccessResponse {
-	this := TransactionalSuccessResponse{}
+func NewContactPropertySuccessResponseWithDefaults() *ContactPropertySuccessResponse {
+	this := ContactPropertySuccessResponse{}
 	return &this
 }
 
 // GetSuccess returns the Success field value
-func (o *TransactionalSuccessResponse) GetSuccess() bool {
+func (o *ContactPropertySuccessResponse) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -56,7 +56,7 @@ func (o *TransactionalSuccessResponse) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *TransactionalSuccessResponse) GetSuccessOk() (*bool, bool) {
+func (o *ContactPropertySuccessResponse) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,11 +64,11 @@ func (o *TransactionalSuccessResponse) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *TransactionalSuccessResponse) SetSuccess(v bool) {
+func (o *ContactPropertySuccessResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
-func (o TransactionalSuccessResponse) MarshalJSON() ([]byte, error) {
+func (o ContactPropertySuccessResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -76,13 +76,13 @@ func (o TransactionalSuccessResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o TransactionalSuccessResponse) ToMap() (map[string]interface{}, error) {
+func (o ContactPropertySuccessResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	return toSerialize, nil
 }
 
-func (o *TransactionalSuccessResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ContactPropertySuccessResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -104,53 +104,53 @@ func (o *TransactionalSuccessResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varTransactionalSuccessResponse := _TransactionalSuccessResponse{}
+	varContactPropertySuccessResponse := _ContactPropertySuccessResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTransactionalSuccessResponse)
+	err = decoder.Decode(&varContactPropertySuccessResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = TransactionalSuccessResponse(varTransactionalSuccessResponse)
+	*o = ContactPropertySuccessResponse(varContactPropertySuccessResponse)
 
 	return err
 }
 
-type NullableTransactionalSuccessResponse struct {
-	value *TransactionalSuccessResponse
+type NullableContactPropertySuccessResponse struct {
+	value *ContactPropertySuccessResponse
 	isSet bool
 }
 
-func (v NullableTransactionalSuccessResponse) Get() *TransactionalSuccessResponse {
+func (v NullableContactPropertySuccessResponse) Get() *ContactPropertySuccessResponse {
 	return v.value
 }
 
-func (v *NullableTransactionalSuccessResponse) Set(val *TransactionalSuccessResponse) {
+func (v *NullableContactPropertySuccessResponse) Set(val *ContactPropertySuccessResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTransactionalSuccessResponse) IsSet() bool {
+func (v NullableContactPropertySuccessResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTransactionalSuccessResponse) Unset() {
+func (v *NullableContactPropertySuccessResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTransactionalSuccessResponse(val *TransactionalSuccessResponse) *NullableTransactionalSuccessResponse {
-	return &NullableTransactionalSuccessResponse{value: val, isSet: true}
+func NewNullableContactPropertySuccessResponse(val *ContactPropertySuccessResponse) *NullableContactPropertySuccessResponse {
+	return &NullableContactPropertySuccessResponse{value: val, isSet: true}
 }
 
-func (v NullableTransactionalSuccessResponse) MarshalJSON() ([]byte, error) {
+func (v NullableContactPropertySuccessResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTransactionalSuccessResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableContactPropertySuccessResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
