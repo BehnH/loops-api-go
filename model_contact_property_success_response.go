@@ -16,36 +16,36 @@ import (
 	"fmt"
 )
 
-// checks if the EventSuccessResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EventSuccessResponse{}
+// checks if the ContactPropertySuccessResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactPropertySuccessResponse{}
 
-// EventSuccessResponse struct for EventSuccessResponse
-type EventSuccessResponse struct {
+// ContactPropertySuccessResponse struct for ContactPropertySuccessResponse
+type ContactPropertySuccessResponse struct {
 	Success bool `json:"success"`
 }
 
-type _EventSuccessResponse EventSuccessResponse
+type _ContactPropertySuccessResponse ContactPropertySuccessResponse
 
-// NewEventSuccessResponse instantiates a new EventSuccessResponse object
+// NewContactPropertySuccessResponse instantiates a new ContactPropertySuccessResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventSuccessResponse(success bool) *EventSuccessResponse {
-	this := EventSuccessResponse{}
+func NewContactPropertySuccessResponse(success bool) *ContactPropertySuccessResponse {
+	this := ContactPropertySuccessResponse{}
 	this.Success = success
 	return &this
 }
 
-// NewEventSuccessResponseWithDefaults instantiates a new EventSuccessResponse object
+// NewContactPropertySuccessResponseWithDefaults instantiates a new ContactPropertySuccessResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEventSuccessResponseWithDefaults() *EventSuccessResponse {
-	this := EventSuccessResponse{}
+func NewContactPropertySuccessResponseWithDefaults() *ContactPropertySuccessResponse {
+	this := ContactPropertySuccessResponse{}
 	return &this
 }
 
 // GetSuccess returns the Success field value
-func (o *EventSuccessResponse) GetSuccess() bool {
+func (o *ContactPropertySuccessResponse) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -56,7 +56,7 @@ func (o *EventSuccessResponse) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *EventSuccessResponse) GetSuccessOk() (*bool, bool) {
+func (o *ContactPropertySuccessResponse) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,11 +64,11 @@ func (o *EventSuccessResponse) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *EventSuccessResponse) SetSuccess(v bool) {
+func (o *ContactPropertySuccessResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
-func (o EventSuccessResponse) MarshalJSON() ([]byte, error) {
+func (o ContactPropertySuccessResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -76,13 +76,13 @@ func (o EventSuccessResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o EventSuccessResponse) ToMap() (map[string]interface{}, error) {
+func (o ContactPropertySuccessResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	return toSerialize, nil
 }
 
-func (o *EventSuccessResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ContactPropertySuccessResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -104,53 +104,53 @@ func (o *EventSuccessResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varEventSuccessResponse := _EventSuccessResponse{}
+	varContactPropertySuccessResponse := _ContactPropertySuccessResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventSuccessResponse)
+	err = decoder.Decode(&varContactPropertySuccessResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = EventSuccessResponse(varEventSuccessResponse)
+	*o = ContactPropertySuccessResponse(varContactPropertySuccessResponse)
 
 	return err
 }
 
-type NullableEventSuccessResponse struct {
-	value *EventSuccessResponse
+type NullableContactPropertySuccessResponse struct {
+	value *ContactPropertySuccessResponse
 	isSet bool
 }
 
-func (v NullableEventSuccessResponse) Get() *EventSuccessResponse {
+func (v NullableContactPropertySuccessResponse) Get() *ContactPropertySuccessResponse {
 	return v.value
 }
 
-func (v *NullableEventSuccessResponse) Set(val *EventSuccessResponse) {
+func (v *NullableContactPropertySuccessResponse) Set(val *ContactPropertySuccessResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEventSuccessResponse) IsSet() bool {
+func (v NullableContactPropertySuccessResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEventSuccessResponse) Unset() {
+func (v *NullableContactPropertySuccessResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEventSuccessResponse(val *EventSuccessResponse) *NullableEventSuccessResponse {
-	return &NullableEventSuccessResponse{value: val, isSet: true}
+func NewNullableContactPropertySuccessResponse(val *ContactPropertySuccessResponse) *NullableContactPropertySuccessResponse {
+	return &NullableContactPropertySuccessResponse{value: val, isSet: true}
 }
 
-func (v NullableEventSuccessResponse) MarshalJSON() ([]byte, error) {
+func (v NullableContactPropertySuccessResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEventSuccessResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableContactPropertySuccessResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

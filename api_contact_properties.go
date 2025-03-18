@@ -19,73 +19,63 @@ import (
 )
 
 
-// TransactionalEmailsAPIService TransactionalEmailsAPI service
-type TransactionalEmailsAPIService service
+// ContactPropertiesAPIService ContactPropertiesAPI service
+type ContactPropertiesAPIService service
 
-type ApiTransactionalGetRequest struct {
+type ApiContactsPropertiesGetRequest struct {
 	ctx context.Context
-	ApiService *TransactionalEmailsAPIService
-	perPage *string
-	cursor *string
+	ApiService *ContactPropertiesAPIService
+	list *string
 }
 
-// How many results to return in each request. Must be between 10 and 50. Default is 20.
-func (r ApiTransactionalGetRequest) PerPage(perPage string) ApiTransactionalGetRequest {
-	r.perPage = &perPage
+// \\\&quot;all\\\&quot; (default) or \\\&quot;custom\\\&quot;
+func (r ApiContactsPropertiesGetRequest) List(list string) ApiContactsPropertiesGetRequest {
+	r.list = &list
 	return r
 }
 
-// A cursor, to return a specific page of results. Cursors can be found from the &#x60;pagination.nextCursor&#x60; value in each response.
-func (r ApiTransactionalGetRequest) Cursor(cursor string) ApiTransactionalGetRequest {
-	r.cursor = &cursor
-	return r
-}
-
-func (r ApiTransactionalGetRequest) Execute() ([]TransactionalEmail, *http.Response, error) {
-	return r.ApiService.TransactionalGetExecute(r)
+func (r ApiContactsPropertiesGetRequest) Execute() ([]ContactProperty, *http.Response, error) {
+	return r.ApiService.ContactsPropertiesGetExecute(r)
 }
 
 /*
-TransactionalGet List transactional emails
+ContactsPropertiesGet Get a list of contact properties
 
-Get a list of published transactional emails.
+Retrieve a list of your account's contact properties.<br>Use the `list` parameter to query "all" or "custom" properties.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTransactionalGetRequest
+ @return ApiContactsPropertiesGetRequest
 */
-func (a *TransactionalEmailsAPIService) TransactionalGet(ctx context.Context) ApiTransactionalGetRequest {
-	return ApiTransactionalGetRequest{
+func (a *ContactPropertiesAPIService) ContactsPropertiesGet(ctx context.Context) ApiContactsPropertiesGetRequest {
+	return ApiContactsPropertiesGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []TransactionalEmail
-func (a *TransactionalEmailsAPIService) TransactionalGetExecute(r ApiTransactionalGetRequest) ([]TransactionalEmail, *http.Response, error) {
+//  @return []ContactProperty
+func (a *ContactPropertiesAPIService) ContactsPropertiesGetExecute(r ApiContactsPropertiesGetRequest) ([]ContactProperty, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []TransactionalEmail
+		localVarReturnValue  []ContactProperty
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionalEmailsAPIService.TransactionalGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactPropertiesAPIService.ContactsPropertiesGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transactional"
+	localVarPath := localBasePath + "/contacts/properties"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.perPage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "perPage", r.perPage, "")
-	}
-	if r.cursor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "")
+	if r.list != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "list", r.list, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -141,58 +131,59 @@ func (a *TransactionalEmailsAPIService) TransactionalGetExecute(r ApiTransaction
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTransactionalPostRequest struct {
+type ApiContactsPropertiesPostRequest struct {
 	ctx context.Context
-	ApiService *TransactionalEmailsAPIService
-	transactionalRequest *TransactionalRequest
+	ApiService *ContactPropertiesAPIService
+	contactPropertyCreateRequest *ContactPropertyCreateRequest
 }
 
-func (r ApiTransactionalPostRequest) TransactionalRequest(transactionalRequest TransactionalRequest) ApiTransactionalPostRequest {
-	r.transactionalRequest = &transactionalRequest
+// The name value must be in camelCase, like &#x60;planName&#x60;.
+func (r ApiContactsPropertiesPostRequest) ContactPropertyCreateRequest(contactPropertyCreateRequest ContactPropertyCreateRequest) ApiContactsPropertiesPostRequest {
+	r.contactPropertyCreateRequest = &contactPropertyCreateRequest
 	return r
 }
 
-func (r ApiTransactionalPostRequest) Execute() (*TransactionalSuccessResponse, *http.Response, error) {
-	return r.ApiService.TransactionalPostExecute(r)
+func (r ApiContactsPropertiesPostRequest) Execute() (*ContactPropertySuccessResponse, *http.Response, error) {
+	return r.ApiService.ContactsPropertiesPostExecute(r)
 }
 
 /*
-TransactionalPost Send a transactional email
+ContactsPropertiesPost Create a contact property
 
-Send a transactional email to a contact.<br>Please [email us](mailto:help@loops.so) to enable attachments on your account before using them with the API.
+Add a contact property to your team.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTransactionalPostRequest
+ @return ApiContactsPropertiesPostRequest
 */
-func (a *TransactionalEmailsAPIService) TransactionalPost(ctx context.Context) ApiTransactionalPostRequest {
-	return ApiTransactionalPostRequest{
+func (a *ContactPropertiesAPIService) ContactsPropertiesPost(ctx context.Context) ApiContactsPropertiesPostRequest {
+	return ApiContactsPropertiesPostRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TransactionalSuccessResponse
-func (a *TransactionalEmailsAPIService) TransactionalPostExecute(r ApiTransactionalPostRequest) (*TransactionalSuccessResponse, *http.Response, error) {
+//  @return ContactPropertySuccessResponse
+func (a *ContactPropertiesAPIService) ContactsPropertiesPostExecute(r ApiContactsPropertiesPostRequest) (*ContactPropertySuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TransactionalSuccessResponse
+		localVarReturnValue  *ContactPropertySuccessResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionalEmailsAPIService.TransactionalPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactPropertiesAPIService.ContactsPropertiesPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transactional"
+	localVarPath := localBasePath + "/contacts/properties"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.transactionalRequest == nil {
-		return localVarReturnValue, nil, reportError("transactionalRequest is required and must be specified")
+	if r.contactPropertyCreateRequest == nil {
+		return localVarReturnValue, nil, reportError("contactPropertyCreateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -213,7 +204,7 @@ func (a *TransactionalEmailsAPIService) TransactionalPostExecute(r ApiTransactio
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.transactionalRequest
+	localVarPostBody = r.contactPropertyCreateRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -237,18 +228,7 @@ func (a *TransactionalEmailsAPIService) TransactionalPostExecute(r ApiTransactio
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v TransactionalPost400Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v TransactionalFailure2Response
+			var v ContactPropertyFailureResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

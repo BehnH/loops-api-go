@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the ContactDeleteResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ContactDeleteResponse{}
+// checks if the ContactPropertyFailureResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ContactPropertyFailureResponse{}
 
-// ContactDeleteResponse struct for ContactDeleteResponse
-type ContactDeleteResponse struct {
+// ContactPropertyFailureResponse struct for ContactPropertyFailureResponse
+type ContactPropertyFailureResponse struct {
 	Success bool `json:"success"`
 	Message string `json:"message"`
 }
 
-type _ContactDeleteResponse ContactDeleteResponse
+type _ContactPropertyFailureResponse ContactPropertyFailureResponse
 
-// NewContactDeleteResponse instantiates a new ContactDeleteResponse object
+// NewContactPropertyFailureResponse instantiates a new ContactPropertyFailureResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContactDeleteResponse(success bool, message string) *ContactDeleteResponse {
-	this := ContactDeleteResponse{}
+func NewContactPropertyFailureResponse(success bool, message string) *ContactPropertyFailureResponse {
+	this := ContactPropertyFailureResponse{}
 	this.Success = success
 	this.Message = message
 	return &this
 }
 
-// NewContactDeleteResponseWithDefaults instantiates a new ContactDeleteResponse object
+// NewContactPropertyFailureResponseWithDefaults instantiates a new ContactPropertyFailureResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewContactDeleteResponseWithDefaults() *ContactDeleteResponse {
-	this := ContactDeleteResponse{}
+func NewContactPropertyFailureResponseWithDefaults() *ContactPropertyFailureResponse {
+	this := ContactPropertyFailureResponse{}
 	return &this
 }
 
 // GetSuccess returns the Success field value
-func (o *ContactDeleteResponse) GetSuccess() bool {
+func (o *ContactPropertyFailureResponse) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -58,7 +58,7 @@ func (o *ContactDeleteResponse) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *ContactDeleteResponse) GetSuccessOk() (*bool, bool) {
+func (o *ContactPropertyFailureResponse) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *ContactDeleteResponse) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *ContactDeleteResponse) SetSuccess(v bool) {
+func (o *ContactPropertyFailureResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
 // GetMessage returns the Message field value
-func (o *ContactDeleteResponse) GetMessage() string {
+func (o *ContactPropertyFailureResponse) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *ContactDeleteResponse) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ContactDeleteResponse) GetMessageOk() (*string, bool) {
+func (o *ContactPropertyFailureResponse) GetMessageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,11 +90,11 @@ func (o *ContactDeleteResponse) GetMessageOk() (*string, bool) {
 }
 
 // SetMessage sets field value
-func (o *ContactDeleteResponse) SetMessage(v string) {
+func (o *ContactPropertyFailureResponse) SetMessage(v string) {
 	o.Message = v
 }
 
-func (o ContactDeleteResponse) MarshalJSON() ([]byte, error) {
+func (o ContactPropertyFailureResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -102,14 +102,14 @@ func (o ContactDeleteResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ContactDeleteResponse) ToMap() (map[string]interface{}, error) {
+func (o ContactPropertyFailureResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["message"] = o.Message
 	return toSerialize, nil
 }
 
-func (o *ContactDeleteResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *ContactPropertyFailureResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -132,53 +132,53 @@ func (o *ContactDeleteResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varContactDeleteResponse := _ContactDeleteResponse{}
+	varContactPropertyFailureResponse := _ContactPropertyFailureResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContactDeleteResponse)
+	err = decoder.Decode(&varContactPropertyFailureResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ContactDeleteResponse(varContactDeleteResponse)
+	*o = ContactPropertyFailureResponse(varContactPropertyFailureResponse)
 
 	return err
 }
 
-type NullableContactDeleteResponse struct {
-	value *ContactDeleteResponse
+type NullableContactPropertyFailureResponse struct {
+	value *ContactPropertyFailureResponse
 	isSet bool
 }
 
-func (v NullableContactDeleteResponse) Get() *ContactDeleteResponse {
+func (v NullableContactPropertyFailureResponse) Get() *ContactPropertyFailureResponse {
 	return v.value
 }
 
-func (v *NullableContactDeleteResponse) Set(val *ContactDeleteResponse) {
+func (v *NullableContactPropertyFailureResponse) Set(val *ContactPropertyFailureResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableContactDeleteResponse) IsSet() bool {
+func (v NullableContactPropertyFailureResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableContactDeleteResponse) Unset() {
+func (v *NullableContactPropertyFailureResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableContactDeleteResponse(val *ContactDeleteResponse) *NullableContactDeleteResponse {
-	return &NullableContactDeleteResponse{value: val, isSet: true}
+func NewNullableContactPropertyFailureResponse(val *ContactPropertyFailureResponse) *NullableContactPropertyFailureResponse {
+	return &NullableContactPropertyFailureResponse{value: val, isSet: true}
 }
 
-func (v NullableContactDeleteResponse) MarshalJSON() ([]byte, error) {
+func (v NullableContactPropertyFailureResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableContactDeleteResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableContactPropertyFailureResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

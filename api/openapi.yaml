@@ -2,21 +2,21 @@ openapi: 3.1.0
 info:
   description: "This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api)."
   title: Loops OpenAPI Spec
-  version: 1.3.4
+  version: 1.4.1
 servers:
 - url: https://app.loops.so/api/v1
 tags:
 - name: API key
 - description: Manage contacts in your audience
   name: Contacts
+- description: Manage contact properties
+  name: Contact properties
 - description: View mailing lists
   name: Mailing lists
 - description: Trigger email sending with events
   name: Events
-- description: Send transactional emails
+- description: Send and view transactional emails
   name: Transactional emails
-- description: View custom contact properties
-  name: Custom fields
 paths:
   /api-key:
     get:
@@ -65,10 +65,6 @@ paths:
                 $ref: '#/components/schemas/ContactFailureResponse'
           description: Bad request (e.g. invalid email address).
         "405":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
           description: Wrong HTTP request method.
         "409":
           content:
@@ -111,10 +107,6 @@ paths:
                 $ref: '#/components/schemas/ContactFailureResponse'
           description: Bad request (e.g. `email` or `userId` are missing).
         "405":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ContactFailureResponse'
           description: Wrong HTTP request method.
       security:
       - apiKey: []
@@ -200,6 +192,64 @@ paths:
       summary: Delete a contact
       tags:
       - Contacts
+  /contacts/properties:
+    get:
+      description: Retrieve a list of your account's contact properties.<br>Use the
+        `list` parameter to query "all" or "custom" properties.
+      parameters:
+      - description: \"all\" (default) or \"custom\"
+        explode: true
+        in: query
+        name: list
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ContactProperty'
+                type: array
+          description: Successful.
+        "405":
+          description: Wrong HTTP request method.
+      security:
+      - apiKey: []
+      summary: Get a list of contact properties
+      tags:
+      - Contact properties
+    post:
+      description: Add a contact property to your team.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactPropertyCreateRequest'
+        description: "The name value must be in camelCase, like `planName`."
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactPropertySuccessResponse'
+          description: Successful create.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactPropertyFailureResponse'
+          description: Bad request (e.g. invalid type).
+        "405":
+          description: Wrong HTTP request method.
+      security:
+      - apiKey: []
+      summary: Create a contact property
+      tags:
+      - Contact properties
   /lists:
     get:
       description: Retrieve a list of your account's mailing lists.
@@ -257,6 +307,43 @@ paths:
       tags:
       - Events
   /transactional:
+    get:
+      description: Get a list of published transactional emails.
+      parameters:
+      - description: How many results to return in each request. Must be between 10
+          and 50. Default is 20.
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A cursor, to return a specific page of results. Cursors can\
+          \ be found from the `pagination.nextCursor` value in each response."
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TransactionalEmail'
+                type: array
+          description: Successful.
+        "405":
+          description: Wrong HTTP request method.
+      security:
+      - apiKey: []
+      summary: List transactional emails
+      tags:
+      - Transactional emails
     post:
       description: "Send a transactional email to a contact.<br>Please [email us](mailto:help@loops.so)\
         \ to enable attachments on your account before using them with the API."
@@ -292,25 +379,6 @@ paths:
       summary: Send a transactional email
       tags:
       - Transactional emails
-  /contacts/customFields:
-    get:
-      description: Retrieve a list of your account's custom contact properties.
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/CustomField'
-                type: array
-          description: Successful.
-        "405":
-          description: Wrong HTTP request method.
-      security:
-      - apiKey: []
-      summary: Get a list of custom contact properties
-      tags:
-      - Custom fields
 components:
   schemas:
     Contact:
@@ -408,6 +476,38 @@ components:
       - email
       - userId
     ContactDeleteResponse:
+      example:
+        success: true
+        message: message
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+      - message
+      - success
+    ContactPropertyCreateRequest:
+      example:
+        name: name
+        type: type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      required:
+      - name
+      - type
+    ContactPropertySuccessResponse:
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+    ContactPropertyFailureResponse:
       example:
         success: true
         message: message
@@ -548,7 +648,32 @@ components:
       required:
       - message
       - success
-    CustomField:
+    TransactionalEmail:
+      example:
+        lastUpdated: lastUpdated
+        dataVariables:
+        - dataVariables
+        - dataVariables
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastUpdated:
+          type: string
+        dataVariables:
+          items:
+            description: TODO default missing array inner type to string
+            type: string
+          type: array
+      required:
+      - dataVariables
+      - id
+      - lastUpdated
+      - name
+    ContactProperty:
       example:
         label: label
         type: type
