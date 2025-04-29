@@ -29,6 +29,7 @@ docs/EventFailureResponse.md
 docs/EventRequest.md
 docs/EventSuccessResponse.md
 docs/EventsAPI.md
+docs/IdempotencyKeyFailureResponse.md
 docs/MailingList.md
 docs/MailingListsAPI.md
 docs/TransactionalEmail.md
@@ -60,6 +61,7 @@ model_contact_success_response.go
 model_event_failure_response.go
 model_event_request.go
 model_event_success_response.go
+model_idempotency_key_failure_response.go
 model_mailing_list.go
 model_transactional_email.go
 model_transactional_failure2_response.go
@@ -70,5 +72,4 @@ model_transactional_request.go
 model_transactional_request_attachments_inner.go
 model_transactional_success_response.go
 response.go
-test/api_contact_properties_test.go
 utils.go
