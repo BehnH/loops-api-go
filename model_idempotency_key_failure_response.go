@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the ContactPropertyFailureResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ContactPropertyFailureResponse{}
+// checks if the IdempotencyKeyFailureResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IdempotencyKeyFailureResponse{}
 
-// ContactPropertyFailureResponse struct for ContactPropertyFailureResponse
-type ContactPropertyFailureResponse struct {
+// IdempotencyKeyFailureResponse struct for IdempotencyKeyFailureResponse
+type IdempotencyKeyFailureResponse struct {
 	Success bool `json:"success"`
 	Message string `json:"message"`
 }
 
-type _ContactPropertyFailureResponse ContactPropertyFailureResponse
+type _IdempotencyKeyFailureResponse IdempotencyKeyFailureResponse
 
-// NewContactPropertyFailureResponse instantiates a new ContactPropertyFailureResponse object
+// NewIdempotencyKeyFailureResponse instantiates a new IdempotencyKeyFailureResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContactPropertyFailureResponse(success bool, message string) *ContactPropertyFailureResponse {
-	this := ContactPropertyFailureResponse{}
+func NewIdempotencyKeyFailureResponse(success bool, message string) *IdempotencyKeyFailureResponse {
+	this := IdempotencyKeyFailureResponse{}
 	this.Success = success
 	this.Message = message
 	return &this
 }
 
-// NewContactPropertyFailureResponseWithDefaults instantiates a new ContactPropertyFailureResponse object
+// NewIdempotencyKeyFailureResponseWithDefaults instantiates a new IdempotencyKeyFailureResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewContactPropertyFailureResponseWithDefaults() *ContactPropertyFailureResponse {
-	this := ContactPropertyFailureResponse{}
+func NewIdempotencyKeyFailureResponseWithDefaults() *IdempotencyKeyFailureResponse {
+	this := IdempotencyKeyFailureResponse{}
 	return &this
 }
 
 // GetSuccess returns the Success field value
-func (o *ContactPropertyFailureResponse) GetSuccess() bool {
+func (o *IdempotencyKeyFailureResponse) GetSuccess() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -58,7 +58,7 @@ func (o *ContactPropertyFailureResponse) GetSuccess() bool {
 
 // GetSuccessOk returns a tuple with the Success field value
 // and a boolean to check if the value has been set.
-func (o *ContactPropertyFailureResponse) GetSuccessOk() (*bool, bool) {
+func (o *IdempotencyKeyFailureResponse) GetSuccessOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *ContactPropertyFailureResponse) GetSuccessOk() (*bool, bool) {
 }
 
 // SetSuccess sets field value
-func (o *ContactPropertyFailureResponse) SetSuccess(v bool) {
+func (o *IdempotencyKeyFailureResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
 // GetMessage returns the Message field value
-func (o *ContactPropertyFailureResponse) GetMessage() string {
+func (o *IdempotencyKeyFailureResponse) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *ContactPropertyFailureResponse) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ContactPropertyFailureResponse) GetMessageOk() (*string, bool) {
+func (o *IdempotencyKeyFailureResponse) GetMessageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,11 +90,11 @@ func (o *ContactPropertyFailureResponse) GetMessageOk() (*string, bool) {
 }
 
 // SetMessage sets field value
-func (o *ContactPropertyFailureResponse) SetMessage(v string) {
+func (o *IdempotencyKeyFailureResponse) SetMessage(v string) {
 	o.Message = v
 }
 
-func (o ContactPropertyFailureResponse) MarshalJSON() ([]byte, error) {
+func (o IdempotencyKeyFailureResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -102,14 +102,14 @@ func (o ContactPropertyFailureResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ContactPropertyFailureResponse) ToMap() (map[string]interface{}, error) {
+func (o IdempotencyKeyFailureResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["success"] = o.Success
 	toSerialize["message"] = o.Message
 	return toSerialize, nil
 }
 
-func (o *ContactPropertyFailureResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *IdempotencyKeyFailureResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -132,53 +132,53 @@ func (o *ContactPropertyFailureResponse) UnmarshalJSON(data []byte) (err error) 
 		}
 	}
 
-	varContactPropertyFailureResponse := _ContactPropertyFailureResponse{}
+	varIdempotencyKeyFailureResponse := _IdempotencyKeyFailureResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContactPropertyFailureResponse)
+	err = decoder.Decode(&varIdempotencyKeyFailureResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ContactPropertyFailureResponse(varContactPropertyFailureResponse)
+	*o = IdempotencyKeyFailureResponse(varIdempotencyKeyFailureResponse)
 
 	return err
 }
 
-type NullableContactPropertyFailureResponse struct {
-	value *ContactPropertyFailureResponse
+type NullableIdempotencyKeyFailureResponse struct {
+	value *IdempotencyKeyFailureResponse
 	isSet bool
 }
 
-func (v NullableContactPropertyFailureResponse) Get() *ContactPropertyFailureResponse {
+func (v NullableIdempotencyKeyFailureResponse) Get() *IdempotencyKeyFailureResponse {
 	return v.value
 }
 
-func (v *NullableContactPropertyFailureResponse) Set(val *ContactPropertyFailureResponse) {
+func (v *NullableIdempotencyKeyFailureResponse) Set(val *IdempotencyKeyFailureResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableContactPropertyFailureResponse) IsSet() bool {
+func (v NullableIdempotencyKeyFailureResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableContactPropertyFailureResponse) Unset() {
+func (v *NullableIdempotencyKeyFailureResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableContactPropertyFailureResponse(val *ContactPropertyFailureResponse) *NullableContactPropertyFailureResponse {
-	return &NullableContactPropertyFailureResponse{value: val, isSet: true}
+func NewNullableIdempotencyKeyFailureResponse(val *IdempotencyKeyFailureResponse) *NullableIdempotencyKeyFailureResponse {
+	return &NullableIdempotencyKeyFailureResponse{value: val, isSet: true}
 }
 
-func (v NullableContactPropertyFailureResponse) MarshalJSON() ([]byte, error) {
+func (v NullableIdempotencyKeyFailureResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableContactPropertyFailureResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableIdempotencyKeyFailureResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Loops OpenAPI Spec
   description: This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
-  version: 1.4.1
+  version: 1.4.2
 servers:
   - url: https://app.loops.so/api/v1
 tags:
@@ -297,6 +297,12 @@ paths:
                 $ref: "#/components/schemas/EventFailureResponse"
         "405":
           description: Wrong HTTP request method.
+        "409":
+          description: Idempotency key has been used.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdempotencyKeyFailureResponse"
       security:
         - apiKey: []
   /transactional:
@@ -335,6 +341,12 @@ paths:
                 $ref: "#/components/schemas/TransactionalFailure2Response"
         "405":
           description: Wrong HTTP request method.
+        "409":
+          description: Idempotency key has been used.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdempotencyKeyFailureResponse"
       security:
         - apiKey: []
     get:
@@ -616,6 +628,18 @@ components:
         - success
         - error
     TransactionalFailure3Response:
+      type: object
+      properties:
+        success:
+          type: boolean
+          examples:
+            - false
+        message:
+          type: string
+      required:
+        - success
+        - message
+    IdempotencyKeyFailureResponse:
       type: object
       properties:
         success:
