@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## EventsSendPost
 
-> EventSuccessResponse EventsSendPost(ctx).EventRequest(eventRequest).Execute()
+> EventSuccessResponse EventsSendPost(ctx).EventRequest(eventRequest).IdempotencyKey(idempotencyKey).Execute()
 
 Send an event
 
@@ -30,10 +30,11 @@ import (
 
 func main() {
 	eventRequest := *openapiclient.NewEventRequest("EventName_example") // EventRequest | Provide either `email` or `userId` to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).<br>You can add event properties, which will be available in emails sent by this event. Values can be of type string, number, boolean or date ([see allowed date formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).<br>Make sure to create the properties in Loops before using them in API calls.<br>You can add contact properties as keys in this request (of type `string`, `number`, `boolean` or `date` ([see available date formats](https://loops.so/docs/contacts/properties#dates))).
+	idempotencyKey := "idempotencyKey_example" // string | Include a unique ID for this request (maximum 100 characters) to avoid duplicate events. [More info](https://loops.so/docs/api-reference/send-event#param-idempotency-key) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.EventsSendPost(context.Background()).EventRequest(eventRequest).Execute()
+	resp, r, err := apiClient.EventsAPI.EventsSendPost(context.Background()).EventRequest(eventRequest).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsSendPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,6 +56,7 @@ Other parameters are passed through a pointer to a apiEventsSendPostRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **eventRequest** | [**EventRequest**](EventRequest.md) | Provide either &#x60;email&#x60; or &#x60;userId&#x60; to identify the contact ([read more](https://loops.so/docs/api-reference/send-event#body)).&lt;br&gt;You can add event properties, which will be available in emails sent by this event. Values can be of type string, number, boolean or date ([see allowed date formats](https://loops.so/docs/events/properties#important-information-about-event-properties)).&lt;br&gt;Make sure to create the properties in Loops before using them in API calls.&lt;br&gt;You can add contact properties as keys in this request (of type &#x60;string&#x60;, &#x60;number&#x60;, &#x60;boolean&#x60; or &#x60;date&#x60; ([see available date formats](https://loops.so/docs/contacts/properties#dates))). | 
+ **idempotencyKey** | **string** | Include a unique ID for this request (maximum 100 characters) to avoid duplicate events. [More info](https://loops.so/docs/api-reference/send-event#param-idempotency-key) | 
 
 ### Return type
 

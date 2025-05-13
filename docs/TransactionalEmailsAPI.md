@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## TransactionalPost
 
-> TransactionalSuccessResponse TransactionalPost(ctx).TransactionalRequest(transactionalRequest).Execute()
+> TransactionalSuccessResponse TransactionalPost(ctx).TransactionalRequest(transactionalRequest).IdempotencyKey(idempotencyKey).Execute()
 
 Send a transactional email
 
@@ -99,10 +99,11 @@ import (
 
 func main() {
 	transactionalRequest := *openapiclient.NewTransactionalRequest("Email_example", "TransactionalId_example") // TransactionalRequest | 
+	idempotencyKey := "idempotencyKey_example" // string | Include a unique ID for this request (maximum 100 characters) to avoid duplicate emails. [More info](https://loops.so/docs/api-reference/send-transactional-email#param-idempotency-key) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TransactionalEmailsAPI.TransactionalPost(context.Background()).TransactionalRequest(transactionalRequest).Execute()
+	resp, r, err := apiClient.TransactionalEmailsAPI.TransactionalPost(context.Background()).TransactionalRequest(transactionalRequest).IdempotencyKey(idempotencyKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TransactionalEmailsAPI.TransactionalPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,6 +125,7 @@ Other parameters are passed through a pointer to a apiTransactionalPostRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transactionalRequest** | [**TransactionalRequest**](TransactionalRequest.md) |  | 
+ **idempotencyKey** | **string** | Include a unique ID for this request (maximum 100 characters) to avoid duplicate emails. [More info](https://loops.so/docs/api-reference/send-transactional-email#param-idempotency-key) | 
 
 ### Return type
 
