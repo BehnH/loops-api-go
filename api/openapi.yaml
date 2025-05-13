@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   description: "This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api)."
   title: Loops OpenAPI Spec
-  version: 1.4.2
+  version: 1.4.3
 servers:
 - url: https://app.loops.so/api/v1
 tags:
@@ -272,6 +272,17 @@ paths:
   /events/send:
     post:
       description: Send events to trigger emails in Loops.
+      parameters:
+      - description: "Include a unique ID for this request (maximum 100 characters)\
+          \ to avoid duplicate events. [More info](https://loops.so/docs/api-reference/send-event#param-idempotency-key)"
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 100
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -353,6 +364,17 @@ paths:
     post:
       description: "Send a transactional email to a contact.<br>Please [email us](mailto:help@loops.so)\
         \ to enable attachments on your account before using them with the API."
+      parameters:
+      - description: "Include a unique ID for this request (maximum 100 characters)\
+          \ to avoid duplicate emails. [More info](https://loops.so/docs/api-reference/send-transactional-email#param-idempotency-key)"
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 100
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:

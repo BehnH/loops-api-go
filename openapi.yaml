@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Loops OpenAPI Spec
   description: This is the OpenAPI Spec for the [Loops API](https://loops.so/docs/api).
-  version: 1.4.2
+  version: 1.4.3
 servers:
   - url: https://app.loops.so/api/v1
 tags:
@@ -282,6 +282,13 @@ paths:
             schema:
               $ref: "#/components/schemas/EventRequest"
         required: true
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          description: Include a unique ID for this request (maximum 100 characters) to avoid duplicate events. [More info](https://loops.so/docs/api-reference/send-event#param-idempotency-key)
+          schema:
+            type: string
+            maxLength: 100
       responses:
         "200":
           description: Successful send.
@@ -317,6 +324,13 @@ paths:
             schema:
               $ref: "#/components/schemas/TransactionalRequest"
         required: true
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          description: Include a unique ID for this request (maximum 100 characters) to avoid duplicate emails. [More info](https://loops.so/docs/api-reference/send-transactional-email#param-idempotency-key)
+          schema:
+            type: string
+            maxLength: 100
       responses:
         "200":
           description: Successful send.
